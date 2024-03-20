@@ -1,0 +1,61 @@
+# This is a test of the Azure login
+
+name: az-login-test-orchestrator
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      ConsumerFolderName:
+        description: 'Consumer Name'
+        required: true
+        type: choice
+        options:
+          - acts
+          - beneficial_ownership
+          - generic
+
+permissions:
+  id-token: write
+  contents: read
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  get-env-variables:
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-22.04
+
+    outputs:
+      DeployDevEnvironment: ${{ env.DeployDevEnvironment }}
+      DeployTestEnvironment: ${{ env.DeployTestEnvironment }}
+      DeployProdEnvironment: ${{ env.DeployProdEnvironment }}
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Determine Environments to Deploy
+        run: |
+          $ff_dev = Get-Content "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/variables/dev.json" | ConvertFrom-Json -AsHashtable
+          $DeployDevEnvironment = $ff_dev.DeployDevEnvironment
+          "DeployDevEnvironment=$DeployDevEnvironment" >> $env:GITHUB_ENV
+
+        shell: pwsh
+
+  deploy-dev-consumer:
+    needs: get-env-variables
+    if: ${{ needs.get-env-variables.outputs.DeployDevEnvironment == 'True' }}
+    uses: ./.github/workflows/azlogin.yml
+    with:
+      environment: 'development'
+      envFolderPath: 'dev'
+      ConsumerFolderName: ${{ inputs.ConsumerFolderName }}
+    secrets:
+      TENANT_ID: ${{ secrets.TENANT_ID }}
+      SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+      SERVICE_PRINCIPAL_CLIENT_ID: ${{ secrets.SERVICE_PRINCIPAL_CLIENT_ID }}
+      DNS_ZONE_SUBSCRIPTION_ID: ${{ secrets.DNS_ZONE_SUBSCRIPTION_ID }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
