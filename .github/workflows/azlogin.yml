@@ -1,0 +1,55 @@
+# This is a basic workflow that attempts to log into Azure
+
+name: az-login-test
+
+# Controls when the workflow will run
+on:
+# Allows you to run this workflow from another workflow
+  workflow_call:
+    secrets:
+      TENANT_ID:
+        required: true
+      SUBSCRIPTION_ID:
+        required: true
+      SERVICE_PRINCIPAL_CLIENT_ID:
+        required: true
+      DNS_ZONE_SUBSCRIPTION_ID:
+        required: false
+      AZURE_CREDENTIALS:
+        required: true
+    inputs:
+      environment:
+        required: true
+        type: string
+      envFolderPath:
+        required: true
+        type: string
+      ConsumerFolderName:
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+  
+# The jobs run sequentially or in parallel
+jobs:
+
+  az-login-test:
+
+    # The type of runner that the job will run
+    runs-on: ubuntu-22.04
+
+    environment: 
+      name: ${{ inputs.environment }}
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Log into Azure
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
