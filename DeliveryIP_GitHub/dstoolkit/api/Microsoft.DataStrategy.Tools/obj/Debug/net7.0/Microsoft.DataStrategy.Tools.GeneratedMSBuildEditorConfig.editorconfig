@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Microsoft.DataStrategy.Tools
-build_property.ProjectDir = c:\Users\SmartCloudAI\Documents\GitHub\ACTS-VAT-Tax-Accelerator\DeliveryIP_GitHub\dstoolkit\api\Microsoft.DataStrategy.Tools\
+build_property.ProjectDir = c:\Users\SmartCloudAI\Documents\GitHub\ACTS-Procurement-Accelerator\DeliveryIP_GitHub\dstoolkit\api\Microsoft.DataStrategy.Tools\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
