@@ -1,0 +1,49 @@
+{
+    "DeployDevEnvironment": true,
+
+    "DeployResourcesWithPublicAccess": false,
+
+    "DeployWithCustomNetworking": true,
+
+    "Consumer_Assign_RBAC_On_Deployment": true,
+
+    "azureResourceLocation": "eastus2",
+
+    "tags": {
+        "env": "dev"
+    },
+
+    "AADGroup_Name": "hmx-acts-group",
+
+    "NewResourceGroupName": "hmxactstax-consumer-rg",
+    
+    "DeployNewSynapse": true,
+
+    "DeployNewSynapseArtifacts": true,
+
+    "NewSynapseWorkspaceName": "hmxactstax-consumer-synapse",
+    
+    "DeployNewAzureSQL": true,
+
+    "DeployNewAzureSQLArtifacts": true,
+
+    "NewAzureSQLServerName": "hmxactstaxconsumersql",
+
+    "DeploySynapseWithDataExfiltrationProtection": false,
+
+    "DeployNewConsumerMlWorkspace": true,
+
+    "NewMlWorkspaceName": "hmxactstax-consumer-ml",
+
+    "NewMlKeyVaultName": "hmxactstaxconsumerkvn",
+
+    "NewMlStorageName": "hmxactstaxconsumersn",
+
+    "NewMlAppInsightsName": "hmxactstax-consumer-appin",
+
+    "NewMlContainerRegistryName": "hmxactstaxconsumercrn",
+
+    "ConnectToExistingPurview": true,
+    "ConnectToExistingLogAnalytics": true,
+    "ConnectToExistingCognitiveService": true
+}

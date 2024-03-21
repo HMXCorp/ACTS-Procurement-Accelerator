@@ -1,0 +1,58 @@
+{
+
+    "Entra_Group_Admin": {
+       "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636",
+        "Group_Name": "hmx-acts-group"
+    },
+
+    "Entra_Group_Shared_Service": {
+       "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636",
+        "Group_Name": "hmx-acts-group"
+    },
+    
+    "Entra_Group_for_Consumer": {
+       "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636",
+        "Group_Name": "hmx-acts-group"
+    },
+    
+    "Assign_RBAC_for_Governance": false,
+    
+    "Entra_Group_Governance": {
+        "Group_ID": "",
+        "Group_Name": ""
+    },
+
+    "Assign_RBAC_for_Publishers": false,
+
+    "Entra_Groups_Data_Publishers": [
+        {
+            "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636",
+            "Storage_Paths_Write_Access": []
+        }
+      
+    ],
+
+    "Assign_RBAC_for_Producers": false,
+    
+    "Entra_Groups_Data_Producers": [
+        {
+            "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636",
+            "Storage_Paths_Write_Access": []
+        }
+    ],
+
+    "Assign_RBAC_for_Consumers": false,
+
+    "Entra_Groups_Data_Consumers": [
+        {
+            "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636"
+        }
+    ],
+
+    "Assign_RBAC_for_CICD_Service_Principal": false,
+
+    "Service_Principal_CICD_Object_ID": "adaadf03-a7e3-41cd-a9d1-7267cc31c587",
+
+    "servicePrincipalObjectId": "adaadf03-a7e3-41cd-a9d1-7267cc31c5871"
+
+}
