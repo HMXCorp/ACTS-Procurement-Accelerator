@@ -1,1 +1,1 @@
-README.md
+You will need to update the Power BI data source parameters to point to the deployed Consumer Synapse "Serverless SQL endpoint" (copy from the Overview page of the Synapse resource workspace in the Azure Portal) and provide the required data access credentials. The database is "transparencyengine".
