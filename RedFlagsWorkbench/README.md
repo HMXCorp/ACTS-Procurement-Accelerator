@@ -30,7 +30,7 @@ The Workbench uses the familiar capabilities of Excel to simplify creation and m
     - Click the 'HMX CRex' button on the right-hand side of the Excel Home ribbon to open the Add-in.
 3.Organize your data in Excel tables.
 
-![Red Flags Workbench Excel Tables](./images/Picture4.png)
+![Red Flags Workbench Excel Tables](./images/Picture3.png)
 
     - You can use any data, organized in Excel Tables.
     - To add your own data, use Excel's Data ribbon to get the data you want to analyze and copy it to an Excel worksheet. 
@@ -39,7 +39,7 @@ The Workbench uses the familiar capabilities of Excel to simplify creation and m
     - On the Add-in landing pane, Click **+** (see figure above) to build your own Cognitive Map.  A Cognitive Map contains the goals you wish to achieve, and the situations that impact them.
 5.Create your Cognitive Map as a tree view of your Goals and the important Situations that impact each Goal.
 
-![Red Flags Workbench Cognitive Map](./images/Picture5.png)
+![Red Flags Workbench Cognitive Map](./images/Picture4.png)
 
     - **Goals** are objectives you want to achieve, like ensuring customer satisfaction, procurement integrity, or maximum ROI.
     - **Situations** are the Red Flags (these are used as synonyms below), the conditions that impact achievement of your goals, like compliance red flags.
@@ -47,7 +47,7 @@ The Workbench uses the familiar capabilities of Excel to simplify creation and m
     - **Goal Impact** measures the favorable or negative impact of a red flag when it is present. A positive Goal Impact indicates a favorable or desirable "review" or "green flag". A negative Goal Impact indicates an adverse or undesired red flag.
 6.Define how you assess whether a red flag is present, based on your data, by entering an Excel formula for each red flag Assessor.
 
-![Red Flags Workbench Assessor](./images/Picture6.png)
+![Red Flags Workbench Assessor](./images/Picture5.png)
 
     - To Enter a red flag Assessor, click the ***f*x** button in the Situation Specification section. This will display the Situation Assessor Editor and Formula Bulder.
         - A Assessor evaluates the presence or absence of the flag.
@@ -65,7 +65,7 @@ The Workbench uses the familiar capabilities of Excel to simplify creation and m
     - Enter a Formula Description to describe how the flag is assessed.
 7.Now that you have entered Excel data tables and have a Cognitive Map of Goals and Red Flag Situations with Assessors, you can run what-if simulations to see what red flags are present and how they impact Goal achievement.
 
-![Red Flags Workbench Scenarios](./images/Picture7.png)
+![Red Flags Workbench Scenarios](./images/Picture6.png)
 
     - At the top of the Add-in click the Scenarios button to move to the Scenario Simulation pane.
     - Create a Scenario by clicking the **+** button and entering a name for your Scenario.
@@ -74,20 +74,20 @@ The Workbench uses the familiar capabilities of Excel to simplify creation and m
     During a simulation, the Add-in assesses each of the red flags you defined for the data you have provided. The Add-in automatically evaluates Goal Achievement based on whether flags are present. Adverse or red flags reduce Goal Achievement while Favorable or green flags increase Goal Achievement.
 8.Run and review reports and locate the data causig the presence of a red flag.
 
-![Red Flags Workbench Reports](./images/Picture8.png)
+![Red Flags Workbench Reports](./images/Picture7.png)
 
     - The Workbench Add-in creates 3 different reports that you can review including:  
         - ***SitRep*** (Red Flags Situation summary) with each red flag organized by count (the number of red flags present), key entity, and goal impact.
         - ***Goal Satisfaction*** goal satisfaction as a percent for each goal.
         - ***Goal Impact*** the impact of each red flag by each goal.
 
-![Red Flags Workbench Reports](./images/Picture9.png)
+![Red Flags Workbench Reports](./images/Picture8.png)
 
     - Click on the Goals & Situations button at the top of any Workbench Add-in pane and scroll down to the Cognitive Map. The red notiifcation badges indicate the number of flags present for each of the specified flag situations (recall that they can be either red or green flags).
     - Click on a flag badge that displays a non-zero value. A list will be displayed where each item is one of the Key Entities, for example a taxpayer or invoice, for which the flag was assessed to be present. 
     - Click on any item in the displayed list and the focus will shift to the row in the Key Entity table containing the data that caused the flag to be assessed as present. You can then examine these data to understand the cause of the flag.
 9.Use OpenAI to obtain explanations of your Red Flag Situation definitions.
 
-![Red Flags Workbench Badges](./images/Picture10.png)
+![Red Flags Workbench Badges](./images/Picture9.png)
 
     - In the Cognitive Map display, mouse over the red flag and select the information ***i*** icon. This will display the red flag formula you entered together with an explanation in natural language.
