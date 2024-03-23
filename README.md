@@ -60,7 +60,7 @@ The ACTS Information Assistant applies the [Microsoft Public Sector Group's Info
 - **Personalized**: Responses adjusted to your selected persona.
 - **Explainable**: Provides information on the thought process that generated the response.
 
-See [Information Assistant Installation and Use](InformationAssistant/README.md) for information on deploying the Information Assistant for use with the ACTS Procurement Acclerator.
+See [Information Assistant Deployment and Use](InformationAssistant/README.md) for information on deploying the Information Assistant for use with the ACTS Procurement Acclerator.
 
 ## Contributing
 
