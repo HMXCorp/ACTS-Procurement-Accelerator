@@ -1,10 +1,12 @@
 # Steps to Deploy the Beneficial Ownership Consumer
+
 1. Update the [dev variable file](variables/dev.json) for variables related to the new consumer Synapse like resource names and tags 
 
 2. Trigger the **consumer_orchestrator** GitHub Action. If you're unfamiliar with triggering a GitHub Action, follow these [instructions](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow).
     - Input **beneficial_ownership** for the "Consumer Name" input
 
 # Post Deployment Tasks - Azure SQL
+
 1. Execute the below stored procedure in the deployed Azure SQL Database from the **new-synapse-orchestrator** GitHub Action
     - Login with AAD. SQL Auth is disabled.
 ```sql
@@ -31,6 +33,7 @@ EXEC [dbo].[Execute_For_Beneficial_Owner_Consumer]
 6. The final results will be displayed into the synapse lake database and the final pbi report will need to be pointed to this in order to display the final results.
 
 # Steps to Deploy the Beneficial Ownership PowerBI Report
+
 1. Make sure your Beneficial Ownership Consumer is up and running.
 
 2. [Create a Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
