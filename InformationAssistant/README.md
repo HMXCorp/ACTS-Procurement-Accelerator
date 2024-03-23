@@ -1,0 +1,3 @@
+# Information Assistant Deployment and Use
+
+To deploy the Information Assistant follow the instructions provided in [Microsoft Public Sector Group's Information Assisstant repository](https://github.com/microsoft/PubSec-Info-Assistant). Once the deployment is complete you can learn how to use the Information Assistant in the [User Experience](https://github.com/microsoft/PubSec-Info-Assistant/blob/main/docs/features/user_experience.md#having-a-conversation-with-your-data) section, and you can also refer to this video on [Getting started with Information Assistant](https://mslearn.cloudguides.com/guides/Upload%20data%20and%20use%20Information%20Assistant).
