@@ -2,6 +2,8 @@
 
 Access to the ACTS Procurement Acclerator is by invitation.
 
+![ACTS Procurement Accelerator Architecture](./Architecture.png)
+
 The ACTS Procurement Acclerator includes the following capabilities:
 
 1. **Data Management Infrastructure** - a comprehensive data strategy implementation including data ingestion, Azure Data Factory pipelines, Azure Synapse deployments including pipelines for development (staged) and consumer (curated) data management with associated storage containers, a common Enterprise Procurement Model (EPM), and a beneficial ownership data model. Data schema for the EPM adopts the [Open Contracting Data Standard](https://www.open-contracting.org/data-standard/), a comprehensive data standard designed to increase contracting transparency, and allow deeper analysis of contracting data by a wide range of users.
