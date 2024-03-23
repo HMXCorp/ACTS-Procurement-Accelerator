@@ -1,5 +1,7 @@
 # Downloading and Using the Procurement and Beneficial Ownership Reports
 
+![Pcocurement Manager Report](./Images/ProcurementManagerReport.png)
+
 A set of reports have been created for the ACTS Procurement Accelerator, preloaded with public data that you can view to understand better the kind of information that can be obtained from this procurement solution.
 
 ## Introduction
