@@ -27,7 +27,7 @@ The Development Synapse includes pre-packaged data pipelines that process data d
 
 ## Deploy Consumer Synapse
 
-The next step is to deploy a separate Consumer Synapse environment with the common EPM and populate the consumer EPM with test data [See instuctions here](DeliveryIP_GitHub/consumers/beneficial_ownership/). The Consumer Synapse includes pre-packaged data pipelines that copy the EPM in the staging zone to the "curated" zone, which is the database of record. Additional pipelines extract data from open data sources and populate the Beneficial Ownership Model. Data in these models within the curated zone are used, with the necessary permissions, by management, business intelligence teams, and other data consumers for reporting, and processing external to the ACTS Procurement Acclerator environment.
+The next step is to deploy a separate Consumer Synapse environment with the common EPM and populate the consumer EPM with test data [See instuctions here](DeliveryIP_GitHub/consumers/procurement/). The Consumer Synapse includes pre-packaged data pipelines that copy the EPM in the staging zone to the "curated" zone, which is the database of record. Additional pipelines extract data from open data sources and populate the Beneficial Ownership Model. Data in these models within the curated zone are used, with the necessary permissions, by management, business intelligence teams, and other data consumers for reporting, and processing external to the ACTS Procurement Acclerator environment.
 
 ### Beneficial Ownership Engine
 
