@@ -1,4 +1,4 @@
-# Steps to Deploy the Beneficial Ownership Consumer
+# Steps to Deploy the Procurement Consumer Synapse
 
 1. Update the [dev variable file](variables/dev.json) for variables related to the new consumer Synapse like resource names and tags 
 
