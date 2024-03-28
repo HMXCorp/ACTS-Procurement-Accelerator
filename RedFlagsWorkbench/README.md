@@ -1,4 +1,4 @@
-# ACTS Red Flags Workbench - released March 31 2024
+# ACTS Red Flags Workbench - released March 31, 2024
 
 The ACTS Red Flags Workbench is implemented as an Excel workbook that applies [HMX.ai CRex Add-in for Excel](https://appsource.microsoft.com/en-us/product/office/WA200005695?tab=Overview). CRex Add-in for Excel is free to download from Microsoft AppSource and has the following features:
 
