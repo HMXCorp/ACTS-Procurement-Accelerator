@@ -6,15 +6,15 @@ name: consumer-orchestrator
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      ConsumerFolderName:
-        description: 'Consumer Name'
-        required: true
-        type: choice
-        options:
-          - acts
-          - beneficial_ownership
-          - generic
+    # inputs:
+    #   ConsumerFolderName:
+    #     description: 'Consumer Name'
+    #     required: true
+    #     type: choice
+    #     options:
+    #       - acts
+    #       - beneficial_ownership
+    #       - generic
 
 permissions:
   id-token: write
@@ -39,15 +39,15 @@ jobs:
 
       - name: Determine Environments to Deploy
         run: |
-          $ff_dev = Get-Content "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/variables/dev.json" | ConvertFrom-Json -AsHashtable
+          $ff_dev = Get-Content "./DeliveryIP_GitHub/consumers/procurement/variables/dev.json" | ConvertFrom-Json -AsHashtable
           $DeployDevEnvironment = $ff_dev.DeployDevEnvironment
           "DeployDevEnvironment=$DeployDevEnvironment" >> $env:GITHUB_ENV
 
-          $ff_test = Get-Content "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/variables/test.json" | ConvertFrom-Json -AsHashtable
+          $ff_test = Get-Content "./DeliveryIP_GitHub/consumers/procurement/variables/test.json" | ConvertFrom-Json -AsHashtable
           $DeployTestEnvironment = $ff_test.DeployTestEnvironment
           "DeployTestEnvironment=$DeployTestEnvironment" >> $env:GITHUB_ENV
 
-          $ff_prod = Get-Content "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/variables/prod.json" | ConvertFrom-Json -AsHashtable
+          $ff_prod = Get-Content "./DeliveryIP_GitHub/consumers/procurement/variables/prod.json" | ConvertFrom-Json -AsHashtable
           $DeployProdEnvironment = $ff_prod.DeployProdEnvironment
           "DeployProdEnvironment=$DeployProdEnvironment" >> $env:GITHUB_ENV
         shell: pwsh
@@ -59,7 +59,7 @@ jobs:
     with:
       environment: 'development'
       envFolderPath: 'dev'
-      ConsumerFolderName: ${{ inputs.ConsumerFolderName }}
+      ConsumerFolderName: procurement
     secrets:
       TENANT_ID: ${{ secrets.TENANT_ID }}
       SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
@@ -73,7 +73,7 @@ jobs:
     with:
       environment: 'test'
       envFolderPath: 'test'
-      ConsumerFolderName: ${{ inputs.ConsumerFolderName }}
+      ConsumerFolderName: procurement
     secrets:
       TENANT_ID: ${{ secrets.TENANT_ID }}
       SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
@@ -87,7 +87,7 @@ jobs:
     with:
       environment: 'production'
       envFolderPath: 'prod'
-      ConsumerFolderName: ${{ inputs.ConsumerFolderName }}
+      ConsumerFolderName: procurement
     secrets:
       TENANT_ID: ${{ secrets.TENANT_ID }}
       SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}

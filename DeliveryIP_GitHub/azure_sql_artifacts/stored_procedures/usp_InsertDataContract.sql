@@ -122,8 +122,9 @@ WHERE ContractID = (SELECT ContractID FROM OPENJSON(@jsonData) WITH (ContractID 
         DataOwnerEmail nvarchar(500) '$.DataOwnerEmail',
         DataOwnerUPN nvarchar(255) '$.DataOwnerUPN',
         DataOwnerObjID nvarchar(255) '$.DataOwnerObjID',
-        SME nvarchar(max) as JSON,
-		Pattern nvarchar(255) '$.Pattern',
+        --SME nvarchar(max) as JSON,
+	SME nvarchar(max) '$.SME',  
+	Pattern nvarchar(255) '$.Pattern',
         [Format] nvarchar(255) '$.Format',
         Delimiter nvarchar(255) '$.Delimiter',
         Restrictions nvarchar(255) '$.Restrictions',
@@ -135,5 +136,84 @@ WHERE ContractID = (SELECT ContractID FROM OPENJSON(@jsonData) WITH (ContractID 
 		[CreatedById] nvarchar(255) '$.CreatedById',
 		DataAssetTechnicalInformation nvarchar(max) '$.DataAssetTechnicalInformation' AS JSON
     );
+
+    ---------------------Handshake entry for background when data contact submit----------------------------
+
+    DECLARE @ContractID VARCHAR(36)
+    SELECT @ContractID = ContractID
+    FROM OPENJSON(@jsonData)
+    WITH (
+         ContractID nvarchar(255) '$.ContractID'
+    );
+
+	declare @SourceTechnicalInformation nvarchar(1000),@Pattern nvarchar(500),@IngestionSchedule nvarchar(1000)
+	
+	set @IngestionSchedule= '[{"IngesionScheduleFrequencyRecurrenceValue":null,"IngestionSceheduleTriggerName":null,"IngestionSchedule":false,"IngestionScheduleFrequencyRecurrence":null,"IngestionScheduleRunOnSubmit":false,"IngestionScheduleStartDate":null,"IngestionScheduleStartTime":null}]'
+
+	select @Pattern=Pattern from DataContract where ContractID=@ContractID and Active = 1
+	
+	if @Pattern = 'Delimited Text'
+	begin
+
+		 set @SourceTechnicalInformation='[{"label":"Source Container","value":"landing"},{"label":"Sink Container","value":"raw"},{"label":"Stored Procedure Name","value":"usp_CreateIngestionDelimited"},{"label":"Trigger Name","value":"[TR_blobCreatedEvent]"},{"label":"Top Level PipeLine Name","value":"PL_2_Process_Landed_Files_Step2"},{"label":"Data Loading Behavior","value":"{\"dataLoadingBehavior\": \"Copy_to_Raw\", \"loadType\": \"full\"}"}]'
+	end
+	else
+	begin
+		 set @SourceTechnicalInformation='[{"label":"Source Container","value":"landing"},{"label":"Sink Container","value":"raw"},{"label":"Stored Procedure Name","value":"usp_CreateIngestionJSON"},{"label":"Trigger Name","value":"[TR_blobCreatedEvent]"},{"label":"Top Level PipeLine Name","value":"PL_2_Process_Landed_Files_Step2"},{"label":"Data Loading Behavior","value":"{\"dataLoadingBehavior\": \"Copy_to_Raw\", \"loadType\": \"full\"}"}]'
+		
+	end
+
+    IF EXISTS (SELECT 1 FROM [dbo].[Handshake] WHERE [DataContractID] = @ContractID)	
+    BEGIN
+		 UPDATE HS SET 
+				HS.DataSourceName = DC.DataSourceNameSystem,
+				HS.Publisher =DC.PublisherName,           
+				HS.EditedByDate = GETDATE(),
+				HS.DataAssetTechnicalInformation = DC.DataAssetTechnicalInformation,
+				HS.SourceTechnicalInformation = @SourceTechnicalInformation,
+				HS.ConnectionType = DC.Pattern,            
+				HS.dynamicSinkPath = DC.SubjectArea  + '/' + DC.DataSourceNameSystem + '/',
+				HS.SourceFolderPath = DataSourceNameFriendly + '/'
+			FROM [dbo].[Handshake] HS
+			INNER JOIN DataContract DC ON  HS.DataContractID = DC.ContractID			
+			WHERE  HS.DataContractID = @ContractID 
+  end
+  else
+  begin
+		
+	 INSERT INTO [dbo].[Handshake] (
+            [DataSourceName],
+            [Publisher],
+            [CreatedBy],
+            [CreatedByDate],            
+            [Active],
+            [ActiveDate],          
+            [DataAssetTechnicalInformation],
+            [SourceTechnicalInformation],
+            [ConnectionType],
+            [IngestionSchedule],
+			[dynamicSinkPath],
+			[SourceFolderPath],
+			[DataContractID]
+        )
+		select  DataSourceNameSystem,PublisherName,CreatedBy,CreatedOnDate,Active,
+		ActiveDate,DataAssetTechnicalInformation,@SourceTechnicalInformation,
+		@Pattern,@IngestionSchedule,
+		SubjectArea + '/' + DataSourceNameSystem + '/',
+		DataSourceNameFriendly + '/',
+		ContractID
+
+
+		
+		
+		from DataContract 
+		
+		where ContractID=@ContractID and Active = 1
+
+
+  end
+
+
+
 END;
 GO

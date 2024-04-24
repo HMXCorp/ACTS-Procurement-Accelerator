@@ -57,7 +57,7 @@ jobs:
 
       - name: Get Main Variables
         run: |
-          $json_data = Get-Content "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/variables/${{ inputs.envFolderPath }}.json" | ConvertFrom-Json -AsHashtable
+          $json_data = Get-Content "./DeliveryIP_GitHub/consumers/procurement/variables/${{ inputs.envFolderPath }}.json" | ConvertFrom-Json -AsHashtable
           foreach ( $item in $json_data.GetEnumerator() )
           {
             if($($item.Value).GetType().Name.ToUpper().Contains("HASHTABLE") -or $($item.Value).GetType().Name.ToUpper().Contains("OBJECT[]")){
@@ -205,7 +205,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/azuresql.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/azuresql.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/azuresql.json
             location=${{ env.azureResourceLocation }}
             azureSQLServerName=${{ env.NewAzureSQLServerName }} 
             azureSQLServerDBName=${{ env.azureSQLServerDBName }} 
@@ -237,10 +237,10 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            (Get-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql) -Replace 'insert_synapse_name', '${{ env.NewSynapseWorkspaceName }}' | Set-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql
-            (Get-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql) -Replace 'insert_service_principal_name', '${{ env.servicePrincipalName }}' | Set-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql
-            (Get-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql) -Replace 'insert_consumer_group_name', '${{ env.Entra_Group_for_Consumer_Name }}' | Set-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql
-            Get-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/*/*.sql | Set-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/combined.sql
+            (Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql) -Replace 'insert_synapse_name', '${{ env.NewSynapseWorkspaceName }}' | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql
+            (Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql) -Replace 'insert_service_principal_name', '${{ env.servicePrincipalName }}' | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql
+            (Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql) -Replace 'insert_consumer_group_name', '${{ env.Entra_Group_for_Consumer_Name }}' | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/stored_procedures/AddManagedIdentitiesAsUsers.sql
+            Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/*/*.sql | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/combined.sql
           azPSVersion: "latest"  
 
       - name: Deploy Combined SQL DDL File to Consumer Azure SQL DB
@@ -248,7 +248,7 @@ jobs:
         uses: azure/sql-action@v2.2
         with:        
           connection-string: 'Server=${{ env.NewAzureSQLServerName }}.database.windows.net; Initial Catalog=${{ env.azureSQLServerDBName }}; Authentication=Active Directory Default' 
-          path: './DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/consumer/combined.sql'
+          path: './DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/consumer/combined.sql'
 
       # Combine SQL Files into One for Deployment
       - name: Update SQL DDL File for Deployment to Main SQL
@@ -258,21 +258,27 @@ jobs:
           inlineScript: |
             # edit this later. tech debt
             try {
-              (Get-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/main/stored_procedures/Execute_For_Consumer.sql) -Replace 'insert_synapse_name', '${{ env.NewSynapseWorkspaceName }}' | Set-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/main/stored_procedures/Execute_For_Consumer.sql
+              (Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/stored_procedures/Execute_For_Consumer.sql) -Replace 'insert_synapse_name', '${{ env.NewSynapseWorkspaceName }}' | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/stored_procedures/Execute_For_Consumer.sql
             }
             catch {
               Write-Host $_
             }
-            Get-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/main/*/*.sql | Set-Content ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/main/combined.sql
+            
+            Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/*/*.sql | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/combined.sql
+            $filesDeployed=Get-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/*/*.sql | Set-Content ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/combined.sql
+
+            Write-Host $filesDeployed
+          
           azPSVersion: "latest"  
 
+      
       - name: Deploy Combined SQL DDL File to Azure SQL DB
         if: ${{ env.DeployNewAzureSQLArtifacts  == 'True' }}
         uses: azure/sql-action@v2.2
         with:        
           connection-string: 'Server=${{ env.azureSQLServerName }}.database.windows.net; Initial Catalog=${{ env.azureSQLServerDBName }}; Authentication=Active Directory Default' 
-          path: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/azure_sql_artifacts/main/combined.sql
-
+          path: ./DeliveryIP_GitHub/consumers/procurement/azure_sql_artifacts/main/combined.sql
+        
       # Set Azure SQL AAD Admin Back to Group with Team Members
       - name: Set Azure SQL AAD Admin to Group with Project Team Members
         if: ${{ env.DeployNewAzureSQL == 'True' }}
@@ -294,7 +300,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/synapse.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/synapse.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/synapse.json
             location=${{ env.azureResourceLocation }}
             synapseWorkspaceName=${{ env.NewSynapseWorkspaceName }}
             tags="${{ env.tags }}"
@@ -345,7 +351,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/synapse_pools.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/synapse_pools.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/synapse_pools.json
             synapseWorkspaceName=${{ env.NewSynapseWorkspaceName }}
           failOnStdErr: false
 
@@ -360,7 +366,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/storageaccount.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/mlstorage.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/mlstorage.json
             location=${{ env.azureResourceLocation }}
             storageAccountName=${{ env.NewMlStorageName }} 
             DeployWithCustomNetworking=${{ env.DeployWithCustomNetworking }} 
@@ -392,7 +398,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/keyvault.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/keyVault.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/keyVault.json
             location=${{ env.azureResourceLocation }}
             keyVaultName=${{ env.NewMlKeyVaultName }} 
             DeployLogAnalytics=${{ env.ConnectToExistingLogAnalytics }}
@@ -424,7 +430,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/appinsights.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/mlappinsights.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/mlappinsights.json
             location=${{ env.azureResourceLocation }}
             appInsightsName=${{ env.NewMlAppInsightsName }} 
             DeployLogAnalytics=${{ env.ConnectToExistingLogAnalytics }}
@@ -444,7 +450,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/container_registry.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/aml_container_registry.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/aml_container_registry.json
             location=${{ env.azureResourceLocation }}
             containerRegistryName=${{ env.NewMlContainerRegistryName }} 
             DeployWithCustomNetworking=${{ env.DeployWithCustomNetworking }} 
@@ -473,7 +479,7 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./DeliveryIP_GitHub/bicep_templates/mlworkspace.bicep
           # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/mlworkspace.json
+          parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/mlworkspace.json
             location=${{ env.azureResourceLocation }}
             mlWorkspaceName=${{ env.NewMlWorkspaceName }} 
             mlStorageAccountName=${{ env.NewMlStorageName }} 
@@ -496,30 +502,30 @@ jobs:
             DeployMLWorkspaceInManagedVnet=${{ env.DeployMLWorkspaceInManagedVnet }}
           failOnStdErr: false
 
-      - name: Deploy ML Compute for ML Workspace
-        if: ${{ env.DeployNewConsumerMlWorkspace == 'True' }}
-        uses: Azure/arm-deploy@v1
-        with:
-          # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
-          scope: 'resourcegroup'
-          # Provide the name of a resource group, only required for resource Group deployments.
-          resourceGroupName: ${{ env.NewResourceGroupName }}
-          # Specify the path or URL to the Azure Resource Manager template.
-          template: ./DeliveryIP_GitHub/bicep_templates/ml_compute.bicep
-          # Supply deployment parameter values.
-          parameters: ./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/bicep_parameters/${{ inputs.envFolderPath }}/ml_compute.json
-            location=${{ env.azureResourceLocation }}
-            mlWorkspaceName=${{ env.NewMlWorkspaceName }} 
-            dataLakeName=${{ env.dataLakeName }} 
-            PrimaryRgName=${{ env.PrimaryRgName }} 
-            DeployWithCustomNetworking=${{ env.DeployWithCustomNetworking }}
-            CreatePrivateEndpoints=${{ env.CreatePrivateEndpoints }} 
-            DeployMLWorkspaceInCustomerVnet=${{ env.DeployMLWorkspaceInCustomerVnet }}
-            VnetForResourcesRgName=${{ env.VnetForResourcesRgName }} 
-            VnetForResourcesName=${{ env.VnetForResourcesName }} 
-            MLComputeSubnetName=${{ env.MLComputeSubnetName }} 
-            Assign_RBAC_On_Deployment=${{ env.Consumer_Assign_RBAC_On_Deployment }} 
-          failOnStdErr: false
+      # - name: Deploy ML Compute for ML Workspace
+      #   if: ${{ env.DeployNewConsumerMlWorkspace == 'True' }}
+      #   uses: Azure/arm-deploy@v1
+      #   with:
+      #     # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+      #     scope: 'resourcegroup'
+      #     # Provide the name of a resource group, only required for resource Group deployments.
+      #     resourceGroupName: ${{ env.NewResourceGroupName }}
+      #     # Specify the path or URL to the Azure Resource Manager template.
+      #     template: ./DeliveryIP_GitHub/bicep_templates/ml_compute.bicep
+      #     # Supply deployment parameter values.
+      #     parameters: ./DeliveryIP_GitHub/consumers/procurement/bicep_parameters/${{ inputs.envFolderPath }}/ml_compute.json
+      #       location=${{ env.azureResourceLocation }}
+      #       mlWorkspaceName=${{ env.NewMlWorkspaceName }} 
+      #       dataLakeName=${{ env.dataLakeName }} 
+      #       PrimaryRgName=${{ env.PrimaryRgName }} 
+      #       DeployWithCustomNetworking=${{ env.DeployWithCustomNetworking }}
+      #       CreatePrivateEndpoints=${{ env.CreatePrivateEndpoints }} 
+      #       DeployMLWorkspaceInCustomerVnet=${{ env.DeployMLWorkspaceInCustomerVnet }}
+      #       VnetForResourcesRgName=${{ env.VnetForResourcesRgName }} 
+      #       VnetForResourcesName=${{ env.VnetForResourcesName }} 
+      #       MLComputeSubnetName=${{ env.MLComputeSubnetName }} 
+      #       Assign_RBAC_On_Deployment=${{ env.Consumer_Assign_RBAC_On_Deployment }} 
+      #     failOnStdErr: false
 
       # Log into Azure
       - name: Refresh OIDC Credentials
@@ -688,12 +694,13 @@ jobs:
           inlineScript: |
             $tokenOutput = Get-AzAccessToken -Resource "https://dev.azuresynapse.net"
             $token = $tokenOutput.token
-            $auth = 'Bearer ' + $token
+            $auth = "Bearer $token"
             $headers = @{
               Authorization = "$auth"
+              "Content-Type" = "application/json"
             }
 
-            $databaseFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/databases/"
+            $databaseFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/databases/"
             
             try {
               $files = Get-ChildItem -Path "$databaseFolder" -Depth 1 -Include *.json | Select-Object Name, FullName
@@ -710,6 +717,8 @@ jobs:
               $databaseJson = Get-Content "$full_path" | Out-String
               $databaseJsonRename = $databaseJson.replace('STORAGEACCOUNTNAME','${{ env.dataLakeName }}')
               $api_url = 'https://${{ env.synapseWorkspaceName }}.dev.azuresynapse.net/databases/'+$name_without_extension+'?api-version=2021-04-01'
+              Write-Host $databaseJsonRename
+              Write-Host $api_url
               try {
                 Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $databaseJsonRename
               }
@@ -719,7 +728,7 @@ jobs:
               }
             }
 
-            $databaseTablesFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/databases/*/tables/"
+            $databaseTablesFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/databases/*/tables/"
             
             try {
               $files = Get-ChildItem -Path "$databaseTablesFolder" -Depth 1 -Include *.json | Select-Object Name, FullName
@@ -737,8 +746,7 @@ jobs:
               $tableJsonRename = $tableJson.replace('STORAGEACCOUNTNAME','${{ env.dataLakeName }}')
               $databaseNameArray = $files.FullName -split "/"
               $databaseName = $databaseNameArray[11]
-
-              $api_url = 'https://${{ env.synapseWorkspaceName }}.dev.azuresynapse.net/databases/'+$databaseName+'/tables/'+$name_without_extension+'?api-version=2021-04-01'
+              $api_url = 'https://${{ env.synapseWorkspaceName }}.dev.azuresynapse.net/databases/EnterpriseTaxModel/tables/'+$name_without_extension+'?api-version=2021-04-01'
               try {
                 Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $tableJsonRename
               }
@@ -748,7 +756,7 @@ jobs:
               }
             }
 
-            $databaseRelationshipsFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/databases/*/relationships/"
+            $databaseRelationshipsFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/databases/*/relationships/"
             
             try {
               $files = Get-ChildItem -Path "$databaseRelationshipsFolder" -Depth 1 -Include *.json | Select-Object Name, FullName
@@ -765,7 +773,7 @@ jobs:
               $relationshipJson = Get-Content "$full_path" | Out-String
               $databaseNameArray = $file.FullName -split "/"
               $databaseName = $databaseNameArray[11]
-              $api_url = 'https://${{ env.synapseWorkspaceName }}.dev.azuresynapse.net/databases/'+$databaseName+'/relationships/'+$name_without_extension+'?api-version=2021-04-01'
+              $api_url = 'https://${{ env.synapseWorkspaceName }}.dev.azuresynapse.net/databases/EnterpriseTaxModel/relationships/'+$name_without_extension+'?api-version=2021-04-01'
               try {
                 Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $relationshipJson
               }
@@ -788,7 +796,7 @@ jobs:
               Authorization = "$auth"
             }
 
-            $datasetFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/integration_datasets/"
+            $datasetFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/integration_datasets/"
             
             try {
               $files = Get-ChildItem -Path "$datasetFolder" -Exclude "NotDeployed"
@@ -807,7 +815,7 @@ jobs:
               Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $dataset_body
             }
 
-            $dataflowFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/dataflows/"
+            $dataflowFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/dataflows/"
             
             try {
               $files = Get-ChildItem -Path "$dataflowFolder"
@@ -824,7 +832,7 @@ jobs:
               Set-AzSynapseDataFlow -WorkspaceName ${{ env.synapseWorkspaceName }} -Name $name_without_extension -DefinitionFile "$full_path"
             }
 
-            $notebookFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/notebooks/"
+            $notebookFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/notebooks/"
             
             try {
               $files = Get-ChildItem $notebookFolder -recurse | where { $_.extension -eq ".ipynb" };
@@ -845,7 +853,7 @@ jobs:
               }
             }
 
-            $pipelineFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/main/pipelines/"
+            $pipelineFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/main/pipelines/"
             
             try {
               $files = Get-ChildItem -Path "$pipelineFolder" | Sort-Object -Property Name -Descending
@@ -875,9 +883,10 @@ jobs:
             $auth = 'Bearer ' + $token
             $headers = @{
               Authorization = "$auth"
+              "Content-Type" = "application/json"
             }
 
-            $databaseFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/databases/"
+            $databaseFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/databases/"
             
             try {
               $files = Get-ChildItem -Path "$databaseFolder" -Depth 1 -Include *.json | Select-Object Name, FullName
@@ -893,17 +902,18 @@ jobs:
               $full_path = $file.FullName
               $databaseJson = Get-Content "$full_path" | Out-String
               $databaseJsonRename = $databaseJson.replace('STORAGEACCOUNTNAME','${{ env.dataLakeName }}')
+              Write-Host $databaseJsonRename
               $api_url = 'https://${{ env.NewSynapseWorkspaceName }}.dev.azuresynapse.net/databases/'+$name_without_extension+'?api-version=2021-04-01'
-              try {
+              try { 
                 Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $databaseJsonRename
               }
               catch {
                 Write-Host "The database already exists or an error occurred in the creation of the database."
                 Write-Host $_
-              }
+            }
             }
 
-            $databaseTablesFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/databases/*/tables/"
+            $databaseTablesFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/databases/*/tables/"
             
             try {
               $files = Get-ChildItem -Path "$databaseTablesFolder" -Depth 1 -Include *.json | Select-Object Name, FullName
@@ -921,7 +931,7 @@ jobs:
               $tableJsonRename = $tableJson.replace('STORAGEACCOUNTNAME','${{ env.dataLakeName }}')
               $databaseNameArray = $files.FullName -split "/"
               $databaseName = $databaseNameArray[11]
-
+              Write-Host  $databaseName
               $api_url = 'https://${{ env.NewSynapseWorkspaceName }}.dev.azuresynapse.net/databases/'+$databaseName+'/tables/'+$name_without_extension+'?api-version=2021-04-01'
               try {
                 Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $tableJsonRename
@@ -932,7 +942,7 @@ jobs:
               }
             }
 
-            $databaseRelationshipsFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/databases/*/relationships/"
+            $databaseRelationshipsFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/databases/*/relationships/"
             
             try {
               $files = Get-ChildItem -Path "$databaseRelationshipsFolder" -Depth 1 -Include *.json | Select-Object Name, FullName
@@ -949,6 +959,7 @@ jobs:
               $relationshipJson = Get-Content "$full_path" | Out-String
               $databaseNameArray = $file.FullName -split "/"
               $databaseName = $databaseNameArray[11]
+              Write-Host  $databaseName
               $api_url = 'https://${{ env.NewSynapseWorkspaceName }}.dev.azuresynapse.net/databases/'+$databaseName+'/relationships/'+$name_without_extension+'?api-version=2021-04-01'
               try {
                 Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $relationshipJson
@@ -972,7 +983,7 @@ jobs:
               Authorization = "$auth"
             }
 
-            $datasetFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/integration_datasets/"
+            $datasetFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/integration_datasets/"
             
             try {
               $files = Get-ChildItem -Path "$datasetFolder" -Exclude "NotDeployed"
@@ -991,7 +1002,7 @@ jobs:
               Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $dataset_body
             }
 
-            $sqlScriptFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/sqlscripts/"
+            $sqlScriptFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/sqlscripts/"
             
             try {
               $files = Get-ChildItem -Path "$sqlScriptFolder"
@@ -1009,7 +1020,7 @@ jobs:
               Set-AzSynapseSqlScript -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -DefinitionFile "$full_path" -FolderPath "PBI_View_Creation_SQL" -SqlDatabaseName TAXModel -SqlPoolName "Built-in"
             }
 
-            $dataflowFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/dataflows/"
+            $dataflowFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/dataflows/"
             
             try {
               $files = Get-ChildItem -Path "$dataflowFolder"
@@ -1026,7 +1037,7 @@ jobs:
               Set-AzSynapseDataFlow -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -Name $name_without_extension -DefinitionFile "$full_path"
             }
 
-            $notebookFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/notebooks/"
+            $notebookFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/notebooks/"
             
             try {
               $files = Get-ChildItem $notebookFolder -recurse | where { $_.extension -eq ".ipynb" };
@@ -1037,17 +1048,22 @@ jobs:
             }
 
             foreach($file in $files) {
-              $notebookDirectory = (Get-ItemProperty -Path $notebookFolder).FullName;
-              $folderPath = $file.FullName.Substring($notebookDirectory.Length).Replace('\','/').Replace($file.name,'');
+              
+              $notebookContent = Get-Content -Path $file.FullName -Raw
+              $modifiedContent = $notebookContent -Replace 'STORAGEACCOUNTNAME', '${{ env.dataLakeName }}'
+              $modifiedNotebookPath = "$notebookFolder\$($file.BaseName)_modified.ipynb"
+              $modifiedContent | Set-Content -Path $modifiedNotebookPath -Force
 
-              if ([string]::IsNullOrEmpty($folderPath)){
-                Set-AzSynapseNotebook -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -Name $file.BaseName -DefinitionFile $file.FullName -SparkPoolName "defaultSpark33" -ExecutorCount 1 -ExecutorSize "Medium"
-              }else{
-                Set-AzSynapseNotebook -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -Name $file.BaseName -DefinitionFile $file.FullName -FolderPath $folderPath -SparkPoolName "defaultSpark33" -ExecutorCount 1 -ExecutorSize "Medium"
-              }
+              Set-AzSynapseNotebook -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -Name $file.BaseName -DefinitionFile $modifiedNotebookPath -SparkPoolName "defaultSpark33" -ExecutorCount 1 -ExecutorSize "Medium"
+
+
+              
+
+
+
             }
 
-            $pipelineFolder = "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/pipelines/"
+            $pipelineFolder = "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/pipelines/"
             
             try {
               $files = Get-ChildItem -Path "$pipelineFolder" | Sort-Object -Property Name -Descending
@@ -1066,7 +1082,7 @@ jobs:
               Invoke-RestMethod -Method 'PUT' -Uri $api_url -Headers $headers -Body $pipeline_body
             }
             
-            Set-AzSynapseTrigger -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -Name 'TR_GetLoggingUpdates' -DefinitionFile "./DeliveryIP_GitHub/consumers/${{ inputs.ConsumerFolderName }}/synapse_artifacts/consumer/triggers/TR_GetLoggingUpdates.json"
+            Set-AzSynapseTrigger -WorkspaceName ${{ env.NewSynapseWorkspaceName }} -Name 'TR_GetLoggingUpdates' -DefinitionFile "./DeliveryIP_GitHub/consumers/procurement/synapse_artifacts/consumer/triggers/TR_GetLoggingUpdates.json"
           azPSVersion: "latest"
 
       # Get AAD Group ID that will be used as admin for Synapse

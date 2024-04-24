@@ -69,7 +69,7 @@ resource r_databricksWorkspace 'Microsoft.Databricks/workspaces@2023-02-01' = {
     name: pricingTier
   }
   properties: {
-    publicNetworkAccess: publicNetworkAccessForWorkspace
+    //publicNetworkAccess: publicNetworkAccessForWorkspace
     requiredNsgRules: (DatabricksInVnet == false || DeployResourcesWithPublicAccess == 'True') ? null : requiredNsgRules
     managedResourceGroupId: managedResourceGroup.id
     parameters: {
@@ -89,25 +89,25 @@ resource r_databricksWorkspace 'Microsoft.Databricks/workspaces@2023-02-01' = {
   }
 }
 
-module m_databricks_private_endpoints 'databricks_pe.bicep' = if (PeIntegration) {
-  name: 'm_databricks_private_endpoints'
-  scope: resourceGroup(privateEndpointRg)
-  params: {
-    location:location
-    privateEndpointRg: privateEndpointRg
-    VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
-    VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
-    PrivateEndpointSubnetName: PrivateEndpointSubnetName
-    VnetForDatabricksTransitSubscriptionId: VnetForDatabricksTransitSubscriptionId
-    VnetForDatabricksTransitRgName: VnetForDatabricksTransitRgName
-    VnetForDatabricksTransitName: VnetForDatabricksTransitName
-    DatabricksTransitPESubnetName: DatabricksTransitPESubnetName
-    UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
-    DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
-    PrivateDNSZoneRgName: PrivateDNSZoneRgName
-    privateDnsZoneName:privateDnsZoneName
-    databricksWorkspaceName: databricksWorkspaceName
-    r_databricksWorkspace_id: r_databricksWorkspace.id
-    PrivateEndpointId: PrivateEndpointId
-  }
-}
+// module m_databricks_private_endpoints 'databricks_pe.bicep' = if (PeIntegration) {
+//   name: 'm_databricks_private_endpoints'
+//   scope: resourceGroup(privateEndpointRg)
+//   params: {
+//     location:location
+//     privateEndpointRg: privateEndpointRg
+//     VnetforPrivateEndpointsRgName: VnetforPrivateEndpointsRgName
+//     VnetforPrivateEndpointsName: VnetforPrivateEndpointsName
+//     PrivateEndpointSubnetName: PrivateEndpointSubnetName
+//     VnetForDatabricksTransitSubscriptionId: VnetForDatabricksTransitSubscriptionId
+//     VnetForDatabricksTransitRgName: VnetForDatabricksTransitRgName
+//     VnetForDatabricksTransitName: VnetForDatabricksTransitName
+//     DatabricksTransitPESubnetName: DatabricksTransitPESubnetName
+//     UseManualPrivateLinkServiceConnections: UseManualPrivateLinkServiceConnections
+//     DNS_ZONE_SUBSCRIPTION_ID: DNS_ZONE_SUBSCRIPTION_ID
+//     PrivateDNSZoneRgName: PrivateDNSZoneRgName
+//     privateDnsZoneName:privateDnsZoneName
+//     databricksWorkspaceName: databricksWorkspaceName
+//     r_databricksWorkspace_id: r_databricksWorkspace.id
+//     PrivateEndpointId: PrivateEndpointId
+//   }
+// }

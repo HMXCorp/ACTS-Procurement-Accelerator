@@ -5,7 +5,7 @@
             "Execute_query": {
                 "inputs": {
                     "parameters": {
-                        "query": "EXEC [dbo].[schemaDynamic] @fileType ='@{triggerBody()?['fileType']}', @currentPage ='@{triggerBody()?['currentPage']}', @filePath ='@{triggerBody()?['path']}', @delimiter ='@{triggerBody()?['delimiterValue']}'"
+                        "query": "EXEC [dbo].[schemaDynamic] @fileType ='@{triggerBody()?['fileType']}', @filePath ='@{triggerBody()?['path']}'"
                     },
                     "serviceProviderConfiguration": {
                         "connectionName": "sql-2",
