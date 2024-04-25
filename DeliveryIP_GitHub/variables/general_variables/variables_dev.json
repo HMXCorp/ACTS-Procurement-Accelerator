@@ -13,15 +13,15 @@
 
     "dataFactoryName": "hmx-acts-tax-datafactory-dev",
 
-    "azureSQLServerName": "hmxactstaxsqldev",
+    "azureSQLServerName": "hmxacttaxsqldev",
     
     "azureSQLServerDBName": "MetadataControl",
 
-    "keyVaultName": "hmxactstaxkeyvaultdev",
+    "keyVaultName": "hmxacttaxkeyvaultdev",
 
-    "dataLakeName": "hmxacttaxdlconsmrdatadv",
+    "dataLakeName": "hmxactaxdlconsmrdatadv",
 
-    "landingStorageName": "hmxactstaxlandstordev",
+    "landingStorageName": "hmxacttaxlandstordev",
 
     "LogicAppRgName": "hmx-acts-tax-logic-dev",
 
@@ -29,7 +29,7 @@
 
     "logicAppServicePlanName": "hmx-acts-tax-logicappservplan-dev",
 
-    "logicAppStorageName": "hmxactstaxlogicappsdeva",
+    "logicAppStorageName": "hmxacttaxlogicappsdev",
 
     "logicAppInsightsName": "hmx-acts-tax-appins-dev",
 
@@ -39,21 +39,21 @@
 
     "MlRgName": "hmx-acts-tax-ml-dev",
 
-    "mlWorkspaceName": "hmx-acts-tax-mlwork-dev",
+    "mlWorkspaceName": "hmx-act-tax-work-dev",
 
-    "mlWorkspaceKeyVaultName": "hmxacttaxmlkeyvdev",
+    "mlWorkspaceKeyVaultName": "hmxactaxmlkeyvdev",
 
-    "mlStorageName": "hmxactstaxmlstrgedv",
+    "mlStorageName": "hmxacttaxmlstrgedev",
 
     "mlAppInsightsName": "hmx-acts-tax-appin-dev",
 
-    "mlContainerRegistryName": "hmxactstaxmlcregndev",
+    "mlContainerRegistryName": "hmxactstaxmlcregdev",
 
-    "cognitiveServiceName": "hmx-acts-taxcognitidev",
+    "cognitiveServiceName": "hmx-act-taxcognitidev",
 
     "eventHubNamespaceName": "hmx-acts-tax-eventhubdev",
 
     "streamAnalyticsName": "hmx-acts-tax-streamandev" ,
     
-    "databricksWorkspaceName" : "hmx-acts-tax-databricksdev"
+    "databricksWorkspaceName" : "hmx-acts-tax-databriksdv"
 }
