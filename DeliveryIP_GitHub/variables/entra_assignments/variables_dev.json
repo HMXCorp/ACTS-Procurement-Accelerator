@@ -26,7 +26,7 @@
 
     "Entra_Groups_Data_Publishers": [
         {
-            "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636",
+            "Group_ID": "507255bb-8742-4559-89d0-bbcdc3819a2b",
             "Storage_Paths_Write_Access": []
         }
       
@@ -45,7 +45,7 @@
 
     "Entra_Groups_Data_Consumers": [
         {
-            "Group_ID": "d88afb6b-553b-458a-9c73-3a9199c93636"
+            "Group_ID": "66195994-f116-4096-b925-be0af80e2abf"
         }
     ],
 
