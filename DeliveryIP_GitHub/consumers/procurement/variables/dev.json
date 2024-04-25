@@ -1,9 +1,9 @@
 {
     "DeployDevEnvironment": true,
 
-    "DeployResourcesWithPublicAccess": false,
+    "DeployResourcesWithPublicAccess": true,
 
-    "DeployWithCustomNetworking": true,
+    "DeployWithCustomNetworking": false,
 
     "Consumer_Assign_RBAC_On_Deployment": true,
 
@@ -15,33 +15,33 @@
 
     "AADGroup_Name": "hmx-acts-group",
 
-    "NewResourceGroupName": "hmxactstax-consumer-rg",
+    "NewResourceGroupName": "hmxactstax-consumer-benf-owner",
     
     "DeployNewSynapse": true,
 
     "DeployNewSynapseArtifacts": true,
 
-    "NewSynapseWorkspaceName": "hmxactstax-consumer-synapse",
+    "NewSynapseWorkspaceName": "hmxactstax-synapse-benf-owner",
     
     "DeployNewAzureSQL": true,
 
     "DeployNewAzureSQLArtifacts": true,
 
-    "NewAzureSQLServerName": "hmxactstaxconsumersql",
+    "NewAzureSQLServerName": "hmxactstaxconsumersqlbenf",
 
     "DeploySynapseWithDataExfiltrationProtection": false,
 
     "DeployNewConsumerMlWorkspace": true,
 
-    "NewMlWorkspaceName": "hmxactstax-consumer-ml",
+    "NewMlWorkspaceName": "hmxactstax-consumer-mldev",
 
-    "NewMlKeyVaultName": "hmxactstaxconsumerkvn",
+    "NewMlKeyVaultName": "hmxacttaxconsmrkvnbnf",
 
-    "NewMlStorageName": "hmxactstaxconsumersn",
+    "NewMlStorageName": "hmxacttaxcnsumersnbnf",
 
-    "NewMlAppInsightsName": "hmxactstax-consumer-appin",
+    "NewMlAppInsightsName": "hmxactstax-consumer-appinbnf",
 
-    "NewMlContainerRegistryName": "hmxactstaxconsumercrn",
+    "NewMlContainerRegistryName": "hmxactstaxconsumercrnbnf",
 
     "ConnectToExistingPurview": true,
     "ConnectToExistingLogAnalytics": true,
