@@ -1,59 +1,58 @@
 {
-    "azureResourceLocation": "eastus2",
 
-    "PrimaryRgName": "hmx-acts-tax-consumer",
+    "AllowAccessToIpRange": true,
+    "IpRangeCidr": "0.0.0.0",
+    "IpRangeStart": "0.0.0.0",
+    "IpRangeEnd": "0.0.0.0",
 
-    "tags": {
-        "env": "dev"
-    },
+    "DeployNewVnet": false,
+    "NewVnetAddressSpace": "10.253.0.0/18",
 
-    "AADGroup_Name": "hmx_acts_-group",
+    "VnetForResourcesRgName": "dataStrategyGHDemo-VNET-VM",
+    "VnetForResourcesName": "dsdemovnetdev61",
 
-    "synapseWorkspaceName": "hmx-acts-tax-synapsedev",
-
-    "dataFactoryName": "hmx-acts-tax-datafactory-dev",
-
-    "azureSQLServerName": "hmxacttaxsqldev",
+    "DeployLogicAppInVnet": true,
+    "LogicAppSubnetName": "logicAppSubnet",
     
-    "azureSQLServerDBName": "MetadataControl",
+    "DeployMLWorkspaceInManagedVnet": false,
+    "DeployMLWorkspaceInCustomerVnet": true,
+    "MLComputeSubnetName": "mlSubnet",
 
-    "keyVaultName": "hmxacttaxkeyvaultdev",
+    "DeployDatabricksInVnet": false,
+    "VnetForDatabricksRgName": "dataStrategyGHDemo-VNET-VM",
+    "VnetForDatabricksName": "dsdemovnetdev61",
+    "DatabricksPublicSubnetName": "publicsubnet",
+    "DatabricksPrivateSubnetName": "privatesubnet",
 
-    "dataLakeName": "hmxactaxdlconsmrdatadv",
+    "VnetForDatabricksTransitSubscriptionId": "",
+    "VnetForDatabricksTransitRgName": "dataStrategyGHDemo-VNET-VM",
+    "VnetForDatabricksTransitName": "hstest67",
+    "DatabricksTransitPESubnetName": "default",
 
-    "landingStorageName": "hmxacttaxlandstordev",
+    "CreatePrivateEndpoints": true,
+    "CreatePrivateEndpointsInSameRgAsResource": true,
+    "UseManualPrivateLinkServiceConnections": false,
 
-    "LogicAppRgName": "hmx-acts-tax-logic-dev",
+    "VnetforPrivateEndpointsRgName": "dataStrategyGHDemo-VNET-VM",
+    "VnetforPrivateEndpointsName": "dsdemovnetdev61",
+    "PrivateEndpointSubnetName": "AzurePaasResources",
 
-    "logicAppName": "hmx-acts-tax-logicapp-dev",
+    "PrivateEndpointId": "dev",
 
-    "logicAppServicePlanName": "hmx-acts-tax-logicappservplan-dev",
+    "CreateNewPrivateDNSZones": false,
+    "PrivateDNSZoneRgName": "dataStrategyGHDemo-VNET-VM",
 
-    "logicAppStorageName": "hmxacttaxlogicappsdev",
+    "DeployADFPortalPrivateEndpoint": true,
+    "DeploySynapseWebPrivateEndpoint": false,
+    "DeployPurviewPrivateEndpoints": false,
+    "DeployPurviewIngestionPrivateEndpoints": true,
 
-    "logicAppInsightsName": "hmx-acts-tax-appins-dev",
+    "RedeploymentAfterNetworkingIsSetUp": false,
 
-    "purviewName": "hmx-acts-tax-purview-dev",
+    "DeployVMswithBastion": false,
+    "JumpBoxSubnetName": "jumpbox",
+    "vmsPerEnv": 2,
+    "vmName": "dsdemovmdev61",
+    "bastionName": "dsdemobastiondev61"
 
-    "logAnalyticsName": "hmx-acts-tax-logan-dev",
-
-    "MlRgName": "hmx-acts-tax-ml-dev",
-
-    "mlWorkspaceName": "hmx-act-tax-work-dev",
-
-    "mlWorkspaceKeyVaultName": "hmxactaxmlkeyvdev",
-
-    "mlStorageName": "hmxacttaxmlstrgedev",
-
-    "mlAppInsightsName": "hmx-acts-tax-appin-dev",
-
-    "mlContainerRegistryName": "hmxactstaxmlcregdev",
-
-    "cognitiveServiceName": "hmx-act-taxcognitidev",
-
-    "eventHubNamespaceName": "hmx-acts-tax-eventhubdev",
-
-    "streamAnalyticsName": "hmx-acts-tax-streamandev" ,
-    
-    "databricksWorkspaceName" : "hmx-acts-tax-databriksdv"
 }
