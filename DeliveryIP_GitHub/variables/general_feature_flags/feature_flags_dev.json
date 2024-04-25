@@ -1,9 +1,9 @@
 {
     "DeployDevEnvironment": true,
 
-    "DeployResourcesWithPublicAccess": false,
+    "DeployResourcesWithPublicAccess": true,
 
-    "DeployWithCustomNetworking": true,
+    "DeployWithCustomNetworking": false,
 
     "Assign_RBAC_On_Deployment": true,
 
@@ -37,7 +37,7 @@
 
     "DeployDatabricks": true,
     
-    "DeployPurview": false,
+    "DeployPurview": true,
 
     "DeployLogicApp": true,
 
