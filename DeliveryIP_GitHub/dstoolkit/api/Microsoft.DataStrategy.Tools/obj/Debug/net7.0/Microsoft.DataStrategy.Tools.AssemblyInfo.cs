@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Microsoft.DataStrategy.Tools")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78b2599c157430014f38fd5c557f4364205ba70e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6088e28f927fbbe0296f1f0109036e459c79440")]
 [assembly: System.Reflection.AssemblyProductAttribute("Microsoft.DataStrategy.Tools")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Microsoft.DataStrategy.Tools")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

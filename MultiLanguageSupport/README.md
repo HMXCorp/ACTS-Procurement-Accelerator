@@ -1,0 +1,3 @@
+# Providing Multi-language Support for ACTS Accelerator Power BI Reports
+
+To add multi-language support to your ACTS Accelerator Power BI reports, follow the instructions provided in [Multi-language Support for ACTS Accelerator Power BI Reports](https://github.com/HMXCorp/ACTS-VAT-Tax-Accelerator/tree/main/MultiLanguageSupport/Multi-languageSupport_TranslationBuilder.pdf). You can download the example Power BI file that implements multi-language methods from [this link](https://crexlite.hmx.ai/GenericProcurement-MultiLanugaes.zip).
