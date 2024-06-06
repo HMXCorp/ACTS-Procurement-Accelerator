@@ -28,7 +28,7 @@
         "react-dom": "^18.2.0",
         "react-i18next": "^11.18.6",
         "react-router-dom": "^6.4.2",
-        "sanitize-html": "^2.10.0",
+        "sanitize-html": "^2.12.1",
         "use-debounce": "^8.0.4"
     },
     "devDependencies": {
