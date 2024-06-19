@@ -10,4 +10,4 @@ azureml-core
 azureml-pipeline
 #azureml-defaults
 azure-keyvault-secrets
-azure-identity==1.11.0
+azure-identity==1.16.1
