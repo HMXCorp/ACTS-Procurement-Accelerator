@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Microsoft.DataStrategy.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6088e28f927fbbe0296f1f0109036e459c79440")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b545d1df1e969bd537180319fb18c67c394f962")]
 [assembly: System.Reflection.AssemblyProductAttribute("Microsoft.DataStrategy.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Microsoft.DataStrategy.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
