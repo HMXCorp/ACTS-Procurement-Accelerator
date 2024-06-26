@@ -1,4 +1,4 @@
-# ACTS Procurement Accelerator - released March 31, 2024
+# ACTS Procurement Accelerator
 
 Access to the ACTS Procurement Acclerator is by invitation.
 
@@ -19,21 +19,21 @@ In addition, the following capabilities can be deployed with the ACTS Procuremen
 
 The steps required to deploy the ACTS Procurement Acclerator solution including example data and tools are described below.
 
-## Deploy Data Management Infrastructure & Development Synapse
+## Deploy the Data Management Infrastructure & Development Synapse
 
 The [deployment document](DeliveryIP_GitHub/) provides step by step instructions on how to deploy the data management infrastructure and Development Azure Synapse components. All required services, with developer access, will be in place after deployment. This allows immediate access to the services including those for data ingestion, data processing, and visualization with Power BI reports. Developers with knowledge of Azure Synapse, Azure Data Factory, and Power Platform can easily tailor the ACTS Procurement Acclerator to fit their specific use case needs.
 
 The Development Synapse includes pre-packaged data pipelines that process data downloaded from open data sources and uploaded to the "landing" storage container (or "zone") of the data lake. Additional pipelines transfer data from the [Open Contracting Partnership](https://www.open-contracting.org/data/) and populate the development Enterprise Procurement Model (EPM) in the "staging" zone. The EPM in the staging zone provides access for developers and data scientists, with the necessary permissions, for analysis, machine learning, modeling, and other types of exploratory inspection and analysis.
 
-## Deploy Consumer Synapse
+## Deploy the Consumer Synapse
 
 The next step is to deploy a separate Consumer Synapse environment with the common EPM and populate the consumer EPM with test data [See instuctions here](DeliveryIP_GitHub/consumers/procurement/). The Consumer Synapse includes pre-packaged data pipelines that copy the EPM in the staging zone to the "curated" zone, which is the database of record. Additional pipelines extract data from open data sources and populate the Beneficial Ownership Model. Data in these models within the curated zone are used, with the necessary permissions, by management, business intelligence teams, and other data consumers for reporting, and processing external to the ACTS Procurement Acclerator environment.
 
-### Beneficial Ownership Engine
+### Deploy the Beneficial Ownership Engine
 
 The ACTS Beneficial Ownership Engine (BOE) applies the [Transparency Engine](https://github.com/microsoft/transparency-engine) developed by Microsoft Research to create visualizations of the relationships between entities that must comply with procurement laws and policies. The BOE uses machine learning spectral embedding and graph analysis techniques to reduce complex sets of procurement information from open data sources to create a visual network that shows explicit, and possibly hidden, relationships between these entities. Hidden relationships are inferred based on similarities between attributes such as geographical location, names, addresses, and common activities (e.g, a buyer/seller relationship).
 
-For the ACTS Procurement Acclerator, specialized Azure Synapse pipelines are provided for generation of BOE input data from open data sources including [Open Contracting Partnership](https://www.open-contracting.org/data/data-use/), [Open Sanctions](https://www.opensanctions.org/datasets/), [Open Ownership](https://register.openownership.org/download), and [Open Corporate](https://opencorporates.com/info/our-data/). See [Beneficial Ownership Engine Installation and Use](BeneficialOwnership/README.md) for information on deploying the BOE for use with the ACTS Procurement Acclerator.
+For the ACTS Procurement Acclerator, specialized Azure Synapse pipelines are provided for downloading BOE input data from open data sources including [Open Contracting Partnership](https://www.open-contracting.org/data/data-use/), [Open Sanctions](https://www.opensanctions.org/datasets/), [Open Ownership](https://register.openownership.org/download), and [Open Corporate](https://opencorporates.com/info/our-data/). See [Beneficial Ownership Engine Installation and Use](BeneficialOwnership/README.md) for information on deploying the BOE for use with the ACTS Procurement Acclerator.
 
 The sample data are now ready to be accessed by Power BI from the Consumer Synapse EPM.
 
