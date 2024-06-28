@@ -106,4 +106,4 @@ If your deploying all resources with no public access behind a virtual network
 
 ## Deploy the ACTS Business Use Case Portal
 
-Follow the steps [here](DeliveryIP_GitHub/DataandAIPortal) to install and configure the ACTS Business Use Case Portal.
+Follow the steps [here](DeliveryIP_GitHub/BusinessUseCasePortal) to install and configure the ACTS Business Use Case Portal.
