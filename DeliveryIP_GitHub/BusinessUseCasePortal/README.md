@@ -8,7 +8,7 @@ Follow these steps to deploy and configure the ACTS Business Use Case Portal Pow
 
     ![image of github](img/gitdownload.png)
 
-2. Open the Power App environment. This eniornment is set up and supplied by the customer.
+2. Open the Power App environment. This environment is set up and supplied by the customer.
 
 3. Add the following connection to the environment:
 
