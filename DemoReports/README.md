@@ -1,12 +1,12 @@
 # Downloading and Using the Procurement and Beneficial Ownership Reports
 
-![Pcocurement Manager Report](./Images/ProcurementManagerReport.png)
+![Procurement Manager Report](./Images/ProcurementManagerReport.png)
 
 A set of reports have been created for the ACTS Procurement Accelerator, preloaded with public data that you can view to understand better the kind of information that can be obtained from this procurement solution.
 
 ## Introduction
 
-The Enterprise Procurement Model including  red flags database and results of analyses provide a rich set of data for visualization in Power BI. For the Procurement Accelerator, a Beneficial Ownership Engine is included to enable AI-based examination of these data sets to detect relationships between corporate entities, much as a human expert would, using measures of similarity between entity attributes such as addresses, types of businesses, characteristics of businesses, red flags, and other categories. Experts in procurement know these similarties may indicate a relationship of interest. Governmental entities may have their own models that benefit from curated data and analytical results such as red flags and the results of beneficial ownership analyses.
+The Enterprise Procurement Model including  red flags database and results of analyses provide a rich set of data for visualization in Power BI. For the Procurement Accelerator, a Beneficial Ownership Engine is included to enable AI-based examination of these data sets to detect relationships between corporate entities, much as a human expert would, using measures of similarity between entity attributes such as addresses, types of businesses, characteristics of businesses, red flags, and other categories. Experts in procurement know these similarities may indicate a relationship of interest. Governmental entities may have their own models that benefit from curated data and analytical results such as red flags and the results of beneficial ownership analyses.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ You can examine the preloaded data set and follow the descriptions in the Using 
 1. In the Power BI Data pane, locate the 'Src_DR' table and from its menu select Edit Query to open the Power BI Query Editor window.
 2. Select queries from the Queries panel at left to set the following 5 parameters:
     - **Synapse Workspace Name** - this must be the name of your Development Synapse Workspace.
-    - **Database Name** - this must be the name of the database in your Develoment Synapse that contains the output of the Beneficial Ownership Engine.
+    - **Database Name** - this must be the name of the database in your Development Synapse that contains the output of the Beneficial Ownership Engine.
     - **DBserver** - this must be the name of the 'Dedicated SQL endpoint' of the Development Synapse. You can find this value on the Overview page for the Development Synapse in the Azure Portal.
     - **DBname** - this must be the name of the database that contains the raw OCDS (procurement) data.
 3. Select queries from the Queries panel and use the Power Query 'Advanced Editor' in the Query section of the Home ribbon to make the following changes to 5 queries:
