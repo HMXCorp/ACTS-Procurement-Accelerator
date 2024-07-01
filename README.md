@@ -49,9 +49,9 @@ ACTS Accelerators includes methods and tools to support multiple languages in Po
 
 The ACTS Procurement Accelerator components support the following additions, which are deployed separately.
 
-### Red Flags Workbench
+### Red Flags Server and Excel Workbench Add-in
 
-The Red Flags Workbench is a Microsoft Excel Add-in designed to allow managers and analysts to explore standard procurement red flags available in a library that is based on the [Open Contracting Data Standard](https://www.open-contracting.org/data-standard/), create their own red flags, modify how red flags are assessed, and perform simulations scenarios with a subset of their procurement data. The Add-in applies the familiar capabilities of Excel so that business users can easily create and maintain their red flags. The Add-in's Cognitive Map structure provides a context for organizing red flags in a way that keeps organizations focused on goal achievement and maintaining procurement compliance situational awareness. See [Red Flags Workbench Installation and Use](RedFlagsWorkbench/README.md) for information on deploying the workbench for use with the ACTS Procurement Accelerator.
+The Red Flags Workbench is a Microsoft Excel Add-in designed to allow managers and analysts to explore standard procurement red flags available in a library that is based on the [Open Contracting Data Standard](https://www.open-contracting.org/data-standard/), create their own red flags, modify how red flags are assessed, and perform simulations scenarios with a subset of their procurement data. The Add-in applies the familiar capabilities of Excel so that business users can easily create and maintain their red flags. The Add-in's Cognitive Map structure provides a context for organizing red flags in a way that keeps organizations focused on goal achievement and maintaining procurement compliance situational awareness. See [Red Flags Workbench Installation and Use](RedFlagsServer_and_Workbench/README.md) for information on deploying the workbench for use with the ACTS Procurement Accelerator.
 
 ### Information Assistant
 
