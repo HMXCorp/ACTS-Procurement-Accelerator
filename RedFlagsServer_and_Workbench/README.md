@@ -1,4 +1,4 @@
-# ACTS Red Flags Workbench - released March 31, 2024
+# ACTS Red Flags Server and Excel Workbench Add-in
 
 The ACTS Red Flags Server is an Azure service that enables you to define critical risk signals to monitor and maintain a database of red flags that occur based on procurement data. The Excel Workbench Add-in is applies the [HMX.ai CRex Add-in for Excel](https://appsource.microsoft.com/en-us/product/office/WA200005695?tab=Overview). CRex Add-in for Excel is free to download from Microsoft AppSource. Both the Red Flags Server and The Excel Workbench have the following key features:
 
