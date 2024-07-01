@@ -7,9 +7,8 @@ Access to the ACTS Procurement Accelerator is by invitation.
 The ACTS Procurement Accelerator includes the following capabilities:
 
 1. **Data Management Infrastructure** - a comprehensive data strategy implementation including data ingestion, Azure Data Factory pipelines, Azure Synapse deployments including pipelines for development (staged) and consumer (curated) data management with associated storage containers, a common Enterprise Procurement Model (EPM), and a beneficial ownership data model. Data schema for the EPM adopts the [Open Contracting Data Standard](https://www.open-contracting.org/data-standard/), a comprehensive data standard designed to increase contracting transparency, and allow deeper analysis of contracting data by a wide range of users.
-    - The deployment includes the [Business Use Case Portal](DeliveryIP_GitHub/BusinessUseCasePortal), a Microsoft Power App that is used to identify the location and filename for open data sources downloaded by a user and used to develop the input to the Beneficial Ownership Engine.
 2. **Beneficial Ownership Engine** - A service that applies AI analysis techniques to detect complex relationships between procurement organizational entities and their activities.
-3. **Power BI Templates** - For visualization of procurement compliance information and results of analysis performed by the ACTS Procurement Acclerator services.
+3. **Power BI Templates** - For visualization of procurement compliance information and results of analysis performed by the ACTS Procurement Accelerator services.
 4. **Example Data** - For testing all of the accelerator capabilities.
 
 In addition, the following capabilities can be deployed with the ACTS Procurement Accelerator. Test data and preprocessing pipelines specific to the ACTS Procurement Accelerator implementation also are provided.
