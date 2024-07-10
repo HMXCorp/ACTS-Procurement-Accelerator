@@ -136,7 +136,7 @@ In the Data Contract, fill in as many fields as possible and note that the follo
 
 ![Data Contract Add](img/DataContractAdd.png)
 
-7. Click 'New Handshake' to create the data contract and display the Handshake Service information page.
+7. Click 'New Handshake' to create the data contract and display the Handshake New information page.
 
 ![Data Contract](img/HandshakeNewData.png)
 
