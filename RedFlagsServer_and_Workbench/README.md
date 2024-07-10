@@ -1,24 +1,24 @@
 # ACTS Red Flags Server and Excel Workbench Add-in
 
-The ACTS Red Flags Server is an Azure service that enables you to define critical risk signals to monitor and maintain a database of red flags that occur based on procurement data. The Excel Workbench Add-in is applies the [HMX.ai CRex Add-in for Excel](https://appsource.microsoft.com/en-us/product/office/WA200005695?tab=Overview). CRex Add-in for Excel is free to download from Microsoft AppSource. Both the Red Flags Server and The Excel Workbench have the following key features:
+Two capabilities are available to users of the Accelerator software: (1) the Red Flags Server and (2) the Red Flags Excel Workbench Add-in. The ACTS Red Flags Server is an Azure service that enables you to define critical risk signals to monitor and maintain a database of red flags that occur based on taxpayer data. The Red Flags Excel Workbench Add-in is applies the [HMX.ai CRex Add-in for Excel](https://appsource.microsoft.com/en-us/product/office/WA200005695?tab=Overview). Red Flags Add-in for Excel is free to download from Microsoft AppSource. Both the Red Flags Server and Excel Workbench have the following key features:
 
-- **Goal-Oriented** - Define procurement authority goals most relevant to managing compliance and transparency.
-- **Situation-Centric** - Define the critical situations that a procurement authority wants to uncover and track to determine the best actions to take.
-- **Cognitive Maps** - Organize goals and situations in a graphical 'Cognitive Map' that represents procurement authority compliance management plans.
-- **Simulation Scenarios** - Run simulations for what-if scenarios and fine-tune the procurement authority compliance management plans.
-- **CoPilot Integration** - Investigate how decisions impact procurement organization goal achievement and situational awareness with natural language Q&A.
+- **Goal-Oriented** - Define tax authority goals most relevant to managing compliance and transparency.
+- **Situation-Centric** - Define the critical situations that a tax authority wants to uncover and track to determine the best actions to take.
+- **Cognitive Maps** - Organize goals and situations in a graphical 'Cognitive Map' that represents tax authority compliance management plans.
+- **Simulation Scenarios** - Run simulations for what-if scenarios and fine-tune the tax authority compliance management plans.
+- **CoPilot Integration** - Investigate how decisions impact organizational goal achievement and situational awareness with natural langugae Q&A.
 
 ## Red Flags Server
-
-(TBD Introduction)
+The following are prerequisites for deploying the Red Flags Server:
+- A Microsoft Azure subscription
+- An Azure DevOps subscription - see [Sign up for Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/user-guide/sign-up-invite-teammates) for information on setting up an Azure DevOps account.
+- An understanding of Azure DevOps including configuring and creating Azure DevOps pipelines - see the [Azure Pipelines documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops) for complete information on this topic.
 
 ### Configuration and Deployment
-
-(TBD - Describe what parameters need to be configured and steps for how to deploy)
+(Describe what parameters need to be configured and steps for how to deploy)
 
 ### Functional Test
-
-(TBD-an easy way to start the test and confirm operation of the Red Flags Server)
+(An easy way to start the test and confirm operation of the Red Flags Server)
 
 ## Red Flags Workbench Excel Add-in
 
