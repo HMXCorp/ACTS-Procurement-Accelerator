@@ -158,8 +158,10 @@ Once (a) Data Contracts and Handshake Service are created for each of the 4 open
 
 ## Procurement Processing Pipelines
 
-The Procurement processing pipeline is shown in the image below. Depicted at the top is the Business Use Case Portal Power App described herein. This Power App is designed to simplify the configuration of information, including Contract, Handshake, and Data Mappings, required for the Synapse pipeline execution.
+The Procurement processing pipeline "PL_BO_Part1_FlattenAndValidate" in the Consumer Synapse is shown in the image below. You can inspect this pipeline to see the sections for processing OpenOwnership, OpenContracting, OpenCorporates, and Sanctions data.
 
-![VAT Tax Processing Pipeline](img/VAT_Tax_PipelineProcessing.png)
+![Procurement Processing Pipeline](img/ProcurementPipeline.png)
 
-Depicted on the lower half of the diagram are the pipeline processes. When data are uploaded to the landing zone storage account, Azure Data Factor pipelines are triggered automatically to convert and store the data in parquet file format in the raw zone. These data remain in the raw zone until you trigger the Synapse pipeline 'PL_1_MappingAndMoveToStaging', which automatically triggers pipeline 'PL_2_LoadToLakeDB'. These pipelines move the data from raw to staging to curated zones, where they are available to business consumers of the data in Excel, Power Bi line of business applications.
+Trigger the "PL_BO_Part1_FlattenAndValidate" to complete the processing of open source data. When the processing is complete, the Beneficial Ownership Engine input data files will be created in the location specified in the pipeline "PL_BO_Part2_LoadLakeDB".
+
+This completed the pre-processing required to run the Beneficial Ownership Engine. Refer to the [Beneficial Ownership Engine (BOE)](https://github.com/mbarnettHMX/beneficial-ownership-engine) documentation for details on installing and running the BOE.
