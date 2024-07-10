@@ -1,4 +1,4 @@
-# ACTS Business Use Case Portal Deployment and 
+# Business Use Case Portal Deployment and Use
 
 The Procurement Accelerator, Data Management Infrastructure must be deployed prior to the steps below. See the [deployment document](DeliveryIP_GitHub/README.md) for step by step instructions on how to deploy the data management infrastructure and Azure Synapse components.
 
