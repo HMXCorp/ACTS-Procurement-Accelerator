@@ -18,7 +18,7 @@ The following are prerequisites for deploying the Red Flags Server:
 (Describe what parameters need to be configured and steps for how to deploy)
 
 ### Functional Test
-(An easy way to start the test and confirm operation of the Red Flags Server)
+(An easy way to test and confirm operation of the Red Flags Server)
 
 ## Red Flags Workbench Excel Add-in
 
