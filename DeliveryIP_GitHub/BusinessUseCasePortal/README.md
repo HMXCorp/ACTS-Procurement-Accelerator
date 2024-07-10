@@ -1,6 +1,8 @@
-# ACTS Business Use Case Portal Deployment and Use
+# ACTS Business Use Case Portal Deployment and 
 
-Follow these steps to deploy and configure the ACTS Business Use Case Portal Power App. See the [Procurement Processing Pipelines](#procurement-processing-pipelines) section below for the context for using this Power App.
+The Procurement Accelerator, Data Management Infrastructure must be deployed prior to the steps below. See the [deployment document](DeliveryIP_GitHub/README.md) for step by step instructions on how to deploy the data management infrastructure and Azure Synapse components.
+
+After deploying the infrastructure, follow these steps to deploy and configure the ACTS Business Use Case Portal Power App.
 
 1. Download the zip file from [this repository](./BusiessUseCasePortal_20230928145456.zip).
 
@@ -79,8 +81,7 @@ Click the triple dots and select ‘Turn on’.
 
     ![img](img/powerappimportsuccess.png)
 
-15. The first time this is edited, you will be prompted to enable the needed connections. The system will install this as the user that is currently logged in, so be sure it is with the service account or admin account so that the connector will work for all users.
-Click allow.
+15. The first time this is edited, you will be prompted to enable the needed connections. The system will install as the user currently logged in, so ensure that you are logged in as a service account or admin account so that the connector will work for all users. Click allow to enable the needed connection.
 
     ![img](img/acceptconnections.png)
 
@@ -88,16 +89,20 @@ The ACTS Business Use Case Portal Power App now is configured to allow data regi
 
 ## Using the Business Case Portal
 
-The Data Contract page is used to identify the sources of data from which Beneficial Ownership Engine input data will be extracted, validated, and reformatted. Seven (7) input files are by the Beneficial Ownership Engine. These input data files including definition of contents and a step-wise method for collecting the data are described in [BeneficialOwnershipEngine-InputDataDescription](DeliveryIP_GitHub\BusinessUseCasePortal\BeneficialOwnershipEngine-InputDataDescriptions.pdf).
+The Data Contract page is used to identify the sources of data from which Beneficial Ownership Engine input data will be extracted, validated, and reformatted. Seven (7) input files are required by the Beneficial Ownership Engine. These input data files including definition of contents and a step-wise method for collecting the data are described in [BeneficialOwnershipEngine-InputDataDescription](DeliveryIP_GitHub\BusinessUseCasePortal\BeneficialOwnershipEngine-InputDataDescriptions.pdf).
 
- The instructions described here enable you to generate the required 7 input data from JSON files downloaded from open data sources, including [Open Contracting Partnership](https://www.open-contracting.org/data/data-use/), [Open Sanctions](https://www.opensanctions.org/datasets/), [Open Ownership](https://register.openownership.org/download), and [Open Corporates](https://opencorporates.com/info/our-data/). Use the following links to download the data.
+ The instructions described here enable you to generate the required 7 input data from JSON files downloaded from open data sources, including [Open Contracting Partnership](https://www.open-contracting.org/data/data-use/), [Open Sanctions](https://www.opensanctions.org/datasets/), [Open Ownership](https://register.openownership.org/download), and [Open Corporates](https://opencorporates.com/info/our-data/). Follow these steps to download and upload open source data to a storage container in Azure.
+ 
+ 1. Use the following links to download the data.
 
 - [Open Contracting Partnership](https://data.open-contracting.org/): Select 'START YOUR SEARCH' and choose data for the country of interest.
 - [Open Ownership](https://register.openownership.org/download): Select 'Download' to retrieve the file, which contains data for several countries (as of this writing it is ~3.5GB of data).
 - [Open Sanctions](https://www.opensanctions.org/datasets/): Select 'Browse all 181 data sources...' and select the data source of interest. Note that OpenSanctions is free for non-commercial users, and businesses must acquire a data license to use the dataset.
 - [Open Corporates](https://opencorporates.com/plug-in-our-data/): You can select 'SEARCH FOR FREE' to view the available data; however, a license is required to obtain the data.
 
-For each of these 4 data sources, a ***Data Contract*** and ***Handshake Service*** must be created. 
+Store the downloaded files in a convenient location. In a step below these files will be uploaded to an Azure container.
+
+2. For each of these 4 data sources, a ***Data Contract*** and ***Handshake Service*** must be created. 
 
 A Data Contract is an agreement between a service provider (the Azure services we deploy are the services) and data consumers (customers and partners) that determines the management and intended usage of data between different organizations, or groups within an organization. The aim is to ensure reliable and high-quality data that can be trusted by all parties involved. Data Contracts allow a service to define the entities they own, along with the schema, semantics, and various rules and thresholds such as those for data quality applicable to the data set defined in the contract.
 
@@ -105,19 +110,19 @@ A Handshake Service tracks and manages what and when data is published. This is 
 
 Complete the steps below for each of the 4 open data source files downloaded as described above.
 
-1. From the  [Power Apps, Apps page](https://make.powerapps.com/), click on the Business Use Case application and when the application completes loading, press the 'Play' button at the top right to start the application and display the landing page.
+3. From the  [Power Apps, Apps page](https://make.powerapps.com/), click on the Business Use Case application and when the application completes loading, press the 'Play' button at the top right to start the application and display the landing page.
 
-2. Click the 'Access this service' button on the 'Data Acquisition Toolkit' panel to display the Data Acquisition Toolkit page.
+4. Click the 'Access this service' button on the 'Data Acquisition Toolkit' panel to display the Data Acquisition Toolkit page.
 
 ![Landing Page](img/LandingPage.png)
 
-3. Click 'Access this service' on the 'Data Contract and Shared Service' panel to display the Data Contract and Shared Service page.
+5. Click 'Access this service' on the 'Data Contract and Shared Service' panel to display the Data Contract and Shared Service page.
 
 ![Data Contract](img/DataAcquisitionToolkit.png)
 
 ![Data Contract](img/DataContracts_HandshakeServices.png)
 
-4. Next, click the 'Create New Data Contract' button at the top right to display the 'Data Contract view Edit' page.
+6. Next, click the 'Create New Data Contract' button at the top right to display the 'Data Contract view Edit' page.
 
 ![Data Contract](img/BCP_Picture1.png)
 
@@ -131,19 +136,29 @@ In the Data Contract, fill in as many fields as possible and note that the follo
 
 ![Data Contract Add](img/DataContractAdd.png)
 
-5. Click 'New Handshake' to create the data contract and display the Handshake Service information page.
+7. Click 'New Handshake' to create the data contract and display the Handshake Service information page.
 
 ![Data Contract](img/HandshakeNewData.png)
 
-6. Click 'Submit' to add the new Data Contract and Handshake Service information the meta-data database.
+8. Click 'Submit' to add the new Data Contract and Handshake Service information the meta-data database.
 
-Once Data Contracts and the auto-generated Handshake Service are created for each of the 4 open data source files, a Synapse pipeline can be triggered to ingest and prepare data for the Beneficial Ownership Engine.
+9. Log into the Azure Portal, search for `Synapse Analytics` to display a list of the Synapse instances deployed with the infrastructure, select the Consumer Synapse deployment, open Synapse Studio, click on the "Integrate" (pipe) icon in the left-hand panel, then click the "PL_GetLoggingUpdates" pipeline. Trigger this pipeline to update the MetaDataControl table with information from the Data Contracts created above.
+
+10. Log into the [Azure Portal](https://portal.azure.com) and search for `SQL Database` instances. Click on the 'MetadataControl' SQL database that was created for the Consumer Synapse.
+
+11. Use the Query editor to `SELECT` the top rows from `[dbo.[ControlTable]`. The query should return 4 rows like those in the figure below. Note the “raw_folderpath” and “raw_filename” shown in this table. 
+
+12. In the Azure Portal, open the Consumer Synapse Studio, and click on "Linked - Azure Data Lake Storage Gen2" to see a list of containers and select the 'raw' container, where you can create the folders with the "raw_folderpath" obtained in step 11 above.
+
+![MetaDataControl Table](img/MetaDataControlTable.png)
+
+13. Finally, after creating the folders in step 12, upload each of the 4 downloaded files to the appropriate folder and with the "raw_filename" obtained in step 11 above.
+
+Once (a) Data Contracts and Handshake Service are created for each of the 4 open data source files, and (b) the open data sources are uploaded to the Synapse "raw" container, then the Synapse pipeline can be triggered to automatically ingest and prepare data for the Beneficial Ownership Engine.
 
 ## Procurement Processing Pipelines
 
-The Procurement Accelerator, Data Management Infrastructure must be deployed prior to the steps below. See the [deployment document](DeliveryIP_GitHub/README.md) for step by step instructions on how to deploy the data management infrastructure and Azure Synapse components.
-
-The VAT Tax processing pipeline is shown in the image below. Depicted at the top is the Business Use Case Portal Power App described herein. This Power App is designed to simplify the configuration of information, including Contract, Handshake, and Data Mappings, required for the Synapse pipeline execution.
+The Procurement processing pipeline is shown in the image below. Depicted at the top is the Business Use Case Portal Power App described herein. This Power App is designed to simplify the configuration of information, including Contract, Handshake, and Data Mappings, required for the Synapse pipeline execution.
 
 ![VAT Tax Processing Pipeline](img/VAT_Tax_PipelineProcessing.png)
 
