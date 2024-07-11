@@ -31,7 +31,7 @@ The Red Flags Server does not require configurations, though users may inspect a
 
 ![WhereIsYourCode](./images/WhereIsYourCode.png)
 
-4. In the 'Select a repository' dialog, choose your repository to display the 'Configure your pipeline' dialog. Select 'Existing Azure Pipelines YAML file' at the bottom of the list to display the 'Select and existing YAML file' pop-up dialog. Select 'main' from the Branch drop-down list and the 'deploy-all.yml' YAML file in the Path drop-down list, then click 'Continue'.
+4. In the 'Select a repository' dialog, choose your repository to display the 'Configure your pipeline' dialog. Select 'Existing Azure Pipelines YAML file' at the bottom of the list to display the 'Select and existing YAML file' pop-up dialog. The YAML file for this deployment is stored in the `RedFlagsServer_and_Workbench\DevOps` folder of this repository. Select 'main' from the Branch drop-down list and the 'deploy-all.yml' YAML file in the Path drop-down list, then click 'Continue'.
 
 ![ConfigureYourPipeline](./images/ConfigureYourPipeline.png)
 
