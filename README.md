@@ -14,7 +14,7 @@ The ACTS Procurement Accelerator includes the following capabilities:
 
 In addition, the following capabilities can be deployed with the ACTS Procurement Accelerator. Test data and preprocessing pipelines specific to the ACTS Procurement Accelerator implementation also are provided.
 
-1. **Red Flags Workbench** - Excel-based procurement review flags (red flags or green flags) exploration and simulation.
+1. **Red Flags Server and Workbench** - An Azure AI-based evaluation engine for procurement review flags (red flags or green flags) and an Excel Add-in for review flag exploration and simulation.
 2. **Information Assistant** - Enhanced generative AI supporting query of private procurement organization knowledge in a secure manner.
 
 The steps required to deploy the ACTS Procurement Accelerator solution including example data and tools are described below.
