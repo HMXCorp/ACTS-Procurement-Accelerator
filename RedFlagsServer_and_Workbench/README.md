@@ -6,16 +6,54 @@ Two capabilities are available to users of the Accelerator software: (1) the Red
 - **Situation-Centric** - Define the critical situations that a tax authority wants to uncover and track to determine the best actions to take.
 - **Cognitive Maps** - Organize goals and situations in a graphical 'Cognitive Map' that represents tax authority compliance management plans.
 - **Simulation Scenarios** - Run simulations for what-if scenarios and fine-tune the tax authority compliance management plans.
-- **CoPilot Integration** - Investigate how decisions impact organizational goal achievement and situational awareness with natural langugae Q&A.
+- **CoPilot Integration** - Investigate how decisions impact organizational goal achievement and situational awareness with natural language Q&A.
 
 ## Red Flags Server
+
 The following are prerequisites for deploying the Red Flags Server:
-- A Microsoft Azure subscription
-- An Azure DevOps subscription - see [Sign up for Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/user-guide/sign-up-invite-teammates) for information on setting up an Azure DevOps account.
+
+- A GitHub account into which this repository has been cloned.
+A Microsoft Azure subscription
+- An Azure DevOps subscription - see [Sign up for Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/user-guide/sign-up-invite-teammates) for information on setting up an Azure DevOps account. You must create a resource group into which the Red Flags Server resources will be deployed.
 - An understanding of Azure DevOps including configuring and creating Azure DevOps pipelines - see the [Azure Pipelines documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops) for complete information on this topic.
 
 ### Configuration and Deployment
-(Describe what parameters need to be configured and steps for how to deploy)
+
+The Red Flags Server does not require configurations, though users may inspect and edit the provided YAML files to understand the deployment steps and makes adjustments if required. To create the required resources and deploy the Red Flags Server, follow these steps:
+
+1. Log into the Azure DevOps portal and in the palette select 'Pipelines' to display Pipelines list, which will be empty if no pipelines have been previously created.
+
+![DevOpsPipelineList](./images/DevOpsPipelineList.png)
+
+2. Select 'New pipeline' at the top right to display the 'Where is your code' dialog.
+
+3. In the 'Where is your code' dialog, select GitHub and follow the steps to log into your (cloned) repository. The first time you will need to allow connection of Azure DevOps to your GitHub account and this will require your GitHub account administrator's approval. Once connected to GitHub, you can click on GitHub to display the 'Select a repository' dialog.
+
+![WhereIsYourCode](./images/WhereIsYourCode.png)
+
+4. In the 'Select a repository' dialog, choose your repository to display the 'Configure your pipeline' dialog. Select 'Existing Azure Pipelines YAML file' at the bottom of the list to display the 'Select and existing YAML file' pop-up dialog. Select 'main' from the Branch drop-down list and the 'deploy-all.yml' YAML file in the Path drop-down list, then click 'Continue'.
+
+![ConfigureYourPipeline](./images/ConfigureYourPipeline.png)
+
+![SelectYAMLFile](./images/SelectYAMLFile.png)
+
+5. In the 'Review your pipeline YAML' dialog, you can inspect the pipeline code; however, for successful functional testing, do not alter this file. Select Run at top right to start the deployment; however, the resource group name you created in the target Azure subscription is not set in the YAML file, so an Error will be displayed. To provide the resource group name, click the 'Run new' button at top right, and in the 'Run pipeline' dialog enter the Resource Group Name that you created (the Branch/tag should already be set appropriately). Click the Run button to start the deployment.
+
+![ReviewPipelineYAML](./images/ReviewPipelineYAML.png)
+
+![RunNew](./images/RunNew.png)
+
+![ResourceGroupRun](./images/ResourceGroupRun.png)
+
+6. The first time a pipeline is created it is necessary to permit a connection to the specified Azure subscription. clicking the Run button in the last step will display a dialog for monitoring the deployment steps; however, the state of the 'Deploy resources' will be 'Not started'. Click on the Deploy Resources step, then in the 'Deploy Resources' dialog select the View button in the pop-up dialog select 'Permit' to enable the connection. In the Pipelines list, confirm that the pipeline is in a running state.
+
+![RunNotStarted](./images/RunNotStated.png)
+
+![PermitAccess](./images/PermitAccesspng.png)
+
+![AccessProvided](./images/AccessProvided.png)
+
+The YAML file will now run and create all required resources, set the needed configurations, and deploy Red Flags Server application.
 
 ### Functional Test
 (An easy way to test and confirm operation of the Red Flags Server)
