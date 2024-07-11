@@ -4,7 +4,7 @@ The Procurement Accelerator, Data Management Infrastructure must be deployed pri
 
 After deploying the infrastructure, follow these steps to deploy and configure the ACTS Business Use Case Portal Power App.
 
-1. Download the zip file from [this repository](./BusiessUseCasePortal_20230928145456.zip).
+1. Download the zip file from [this repository](./BusinessUseCasePortal_20240711083923.zip).
 
     ![image of github](img/Screenshot2024-06-29_122734.png)
 
