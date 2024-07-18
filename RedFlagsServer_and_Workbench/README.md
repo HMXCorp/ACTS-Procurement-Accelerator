@@ -1,4 +1,4 @@
-# ACTS Red Flags Server and Excel Workbench Add-in
+# Red Flags Server and Excel Workbench Add-in
 
 Two capabilities are available to users of the Accelerator software: (1) the Red Flags Server and (2) the Red Flags Excel Workbench Add-in. The ACTS Red Flags Server is an Azure service that enables you to define critical risk signals to monitor and maintain a database of red flags that occur based on taxpayer data. The Red Flags Excel Workbench Add-in is applies the [HMX.ai CRex Add-in for Excel](https://appsource.microsoft.com/en-us/product/office/WA200005695?tab=Overview). Red Flags Add-in for Excel is free to download from Microsoft AppSource. Both the Red Flags Server and Excel Workbench have the following key features:
 
