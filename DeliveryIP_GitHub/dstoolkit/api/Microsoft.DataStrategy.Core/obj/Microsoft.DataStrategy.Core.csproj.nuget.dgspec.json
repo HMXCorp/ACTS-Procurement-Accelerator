@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\SmartCloudAI\\Documents\\GitHub\\ACTS-VAT-Tax-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj": {}
+    "c:\\Users\\mbarn_000\\OneDrive - SmartCloud, Inc (1)\\Private\\Documents\\GitHub\\ACTS-Procurement-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj": {}
   },
   "projects": {
-    "c:\\Users\\SmartCloudAI\\Documents\\GitHub\\ACTS-VAT-Tax-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj": {
+    "c:\\Users\\mbarn_000\\OneDrive - SmartCloud, Inc (1)\\Private\\Documents\\GitHub\\ACTS-Procurement-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\SmartCloudAI\\Documents\\GitHub\\ACTS-VAT-Tax-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj",
+        "projectUniqueName": "c:\\Users\\mbarn_000\\OneDrive - SmartCloud, Inc (1)\\Private\\Documents\\GitHub\\ACTS-Procurement-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj",
         "projectName": "Microsoft.DataStrategy.Core",
-        "projectPath": "c:\\Users\\SmartCloudAI\\Documents\\GitHub\\ACTS-VAT-Tax-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj",
-        "packagesPath": "C:\\Users\\SmartCloudAI\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\SmartCloudAI\\Documents\\GitHub\\ACTS-VAT-Tax-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\obj\\",
+        "projectPath": "c:\\Users\\mbarn_000\\OneDrive - SmartCloud, Inc (1)\\Private\\Documents\\GitHub\\ACTS-Procurement-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\Microsoft.DataStrategy.Core.csproj",
+        "packagesPath": "C:\\Users\\mbarn_000\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\mbarn_000\\OneDrive - SmartCloud, Inc (1)\\Private\\Documents\\GitHub\\ACTS-Procurement-Accelerator\\DeliveryIP_GitHub\\dstoolkit\\api\\Microsoft.DataStrategy.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SmartCloudAI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mbarn_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -37,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -103,12 +105,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.32, 6.0.32]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.32, 6.0.32]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.32, 6.0.32]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -66,6 +66,9 @@ The ACTS Information Assistant applies the [Microsoft Public Sector Group's Info
 
 See [Information Assistant Deployment and Use](InformationAssistant/README.md) for information on deploying the Information Assistant for use with the ACTS Procurement Accelerator.
 
+## Open PEPPOL Support
+Example data and supporting code described in this repository apply [Open Contracting Partnership](https://www.open-contracting.org/) data and rules as defined (and extended) in the [Open Contracting Data Stnadard](https://standard.open-contracting.org/latest). The Pan-European Public Procurement On-Line organization, or PEPPOL is an international non-profit organization that enables any organisation to send and receive standard business documents, including electronic documents in procurement processes. The applications described in this repository can manage electronic documents defined in the PEPPOL standard, providing a layer of analytics that improve transparency and compliance. See the [PEPPOL Support document](./PEPPOL/README.md) for more infomation about implementing Procurement Accelerator capabilities with PEPPOL electronic documents.
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>.
