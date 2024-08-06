@@ -1,1 +1,2 @@
-# PEPPOL Support
+# PEPPOL and UBL Support
+The [Peppol Business Interoperability Specifications (BIS)](https://peppol.org/) utilise the [Universal Business Language (UBL](https://docs.oasis-open.org/ubl/UBL-2.3.html), which is an ISO open standard. Peppol, as the [Peppol Network](https://peppol.org/documentation/technical-documentation/edelivery-documentation/), also provides an independently-operated network for exchange of electronic documents, providing mechanisms for access by tax authorities for regulation. 
