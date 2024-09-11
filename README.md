@@ -1,7 +1,5 @@
 # HMX Procurement Accelerator
 
-Access to the HMX Procurement Accelerator is by invitation.
-
 ![HMX Procurement Accelerator Architecture](./Architecture.png)
 
 The HMX Procurement Accelerator includes the following capabilities:
